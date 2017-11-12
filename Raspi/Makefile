@@ -4,9 +4,9 @@
 # your 'sdk'
 # SDKSTAGE=/home/foo/raspberrypi
 
-INCDIR=-I./Common -I$(SDKSTAGE)/opt/vc/include -I$(SDKSTAGE)/opt/vc/include/interface/vcos/pthreads -I$(SDKSTAGE)/opt/vc/include/interface/vmcs_host/linux
+INCDIR = -I./Common $(shell pkg-config --cflags egl) $(shell pkg-config --cflags glesv2)
 
-LIBS=-lGLESv2 -lEGL -lm -lbcm_host -L$(SDKSTAGE)/opt/vc/lib
+LIBS = -lm $(shell pkg-config --libs egl) $(shell pkg-config --libs glesv2)
 
 CFLAGS+=-DRPI_NO_X
 
